@@ -135,7 +135,7 @@ EOF
 	ipset -N whitelist hash:net 2>/dev/null
 	ipset -N blacklist hash:net 2>/dev/null
 	cat /etc/storage/ss_dom.sh | grep -v '^!' | grep -v "^$" > /tmp/ss_dom.txt
-	awk '{printf("ipset=/%s/blacklist\n", $1, $1 )}' /tmp/ss_dom.txt > /tmp/dnsmasq.dom/ss_dom.conf
+	awk '{printf("server=/%s/127.0.0.1#5353\nipset=/%s/gfwlist\n", $1, $1 )}' /tmp/ss_dom.txt > /tmp/dnsmasq.dom/ss_dom.conf
 	cat /etc/storage/uss_dom.sh | grep -v '^!' | grep -v "^$" > /tmp/uss_dom.txt
 	awk '{printf("ipset=/%s/whitelist\n", $1, $1 )}' /tmp/uss_dom.txt > /tmp/dnsmasq.dom/uss_dom.conf
     rm -f /tmp/ss_dom.txt
